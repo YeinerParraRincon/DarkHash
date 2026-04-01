@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 DarkHash — Herramienta educativa de cracking de hashes
 by Yeiner Parra Rincón | WorldSkills 🥈 | SENA ADSO
@@ -12,7 +12,6 @@ import time
 import argparse
 
 
-# ─── Colores ANSI ────────────────────────────────────────────────────────────
 
 class C:
     PURPLE = "\033[95m"
@@ -25,7 +24,6 @@ class C:
     DIM    = "\033[2m"
 
 
-# ─── Banner ───────────────────────────────────────────────────────────────────
 
 def banner():
     print(f"""
@@ -43,7 +41,6 @@ def banner():
 """)
 
 
-# ─── Detectar tipo de hash ────────────────────────────────────────────────────
 
 def detect_hash_type(hash_str: str) -> str:
     tipos = {
@@ -57,7 +54,6 @@ def detect_hash_type(hash_str: str) -> str:
     return tipos.get(len(hash_str.strip()), "Desconocido")
 
 
-# ─── Generar hash ─────────────────────────────────────────────────────────────
 
 def generar_hash(texto: str, algoritmo: str = "md5") -> str:
     algo = algoritmo.lower().replace("-", "")
@@ -70,7 +66,6 @@ def generar_hash(texto: str, algoritmo: str = "md5") -> str:
         sys.exit(1)
 
 
-# ─── Cracking por diccionario ─────────────────────────────────────────────────
 
 def crackear_hash(target_hash: str, wordlist_path: str, algoritmo: str = "md5") -> None:
     target_hash = target_hash.strip().lower()
@@ -128,7 +123,6 @@ def crackear_hash(target_hash: str, wordlist_path: str, algoritmo: str = "md5") 
         print(f"{C.DIM}    Intentos: {intentos:,} | Tiempo: {elapsed:.3f}s{C.RESET}\n")
 
 
-# ─── Modo interactivo ─────────────────────────────────────────────────────────
 
 def modo_interactivo():
     banner()
@@ -165,7 +159,6 @@ def modo_interactivo():
         print(f"{C.RED}[!] Opción no válida.{C.RESET}")
 
 
-# ─── Argumentos CLI ───────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(
@@ -180,7 +173,6 @@ def main():
 
     args = parser.parse_args()
 
-    # Sin argumentos → modo interactivo
     if len(sys.argv) == 1:
         modo_interactivo()
         return
